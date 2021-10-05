@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- LINK RESPONSÁVEL POR DAR TODA A FUNCIONALIDADE DO REACT-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+
+    <!-- CRIAÇÃO DE APLICATIVOS MOBILE -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- TRANSFORMA O NOSSO COD EM FUNÇÕES DE REACT -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <!--
+        O QUE FOI ABORDADO? 
+        COMPOSIÇÃO : USAR COMPONENTS DENTRO DO OUTRO
+        EVENTOS: onClick={nomeFuncao}
+        HOOKS: ATUALIZA TUDO QUANDO É LUGAR NA APLICACAO (IGUAL AO VUEJS)
+    -->
+</head>
+
+<body>
+    <!-- O REACT PRECISA DE UM ELEMENTO PRA MONTAR SOBRE ELE-->
+    <div id="app"></div>
+
+    <!-- O TIPO DE SCRIPT PRECISA SER TEXT/BABEL-->
+    <script type="text/babel">
+        const Compras = () => {
+            //retorna uma array com o numero, string ou sla... e a funcao para atualizar ela
+            //usando desestruturacao pra pegar a funcao
+            //sempre usar num evento para atualizar o estado
+            const [contador, setContador] = React.useState(0);
+
+            function comprar(e){
+                //toda vez q eu clicar em comprar, ele vai adicionar mais um ao contador
+                setContador(contador + 1);
+            }
+
+            return (
+                <div>
+                    <button onClick={comprar}>Comprar</button>
+                    <p>
+                        Total: {contador}
+                    </p>
+                    <p>
+                        Preço: R$ {contador * 200}
+                    </p>
+                </div>
+            )
+        }
+
+
+        function Button() {
+            function eventoClick(e) {
+                console.log(e.target.innerText);
+            }
+
+            //já estou retornando uma função de react
+            return <button onClick={eventoClick}>Botao</button>
+        }
+
+        const Titulo = () => {
+            const numero = Math.random() * 2;
+
+            //passando variavel javascript, usasse o {}
+            return <h1>Meu titulo {numero}</h1>
+        }
+
+        //meu componente
+        function App() {
+            //já estou retornando uma função de react
+
+            //composicao: usar um component dentro de outro
+            return <div>
+                Meu app
+                <Button />
+                <Titulo />
+                <hr></hr>
+                <Compras />
+            </div>
+        }
+
+        //onde será renderizado
+        //1 - component, 2 - onde eu quero que renderize
+        ReactDOM.render(<App />, document.getElementById('app'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- LINK RESPONSÁVEL POR DAR TODA A FUNCIONALIDADE DO REACT-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+
+    <!-- CRIAÇÃO DE APLICATIVOS MOBILE -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- TRANSFORMA O NOSSO COD EM FUNÇÕES DE REACT -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <!--
+        O QUE FOI ABORDADO? 
+        WEBPACK: AGRUPA O CÓDIGO DE CORPA OTIMIZADA. PERMITE DEFINIR COMPONENTES EM DIFERENTES ARQUIVOS. FACILITA O NPM
+        BABEL: TRANSFORMA COD JS NOVO EM VELHO PARA SUPORTAR SITES ANTIGOS
+
+        WEBPACK MÍNIMO
+            npm init -y
+            npm install webpack webpack-cli webpack-dev-server --save-dev
+
+        UM PEQUENO SCRIPT É OBRIGATÓRIO EM PACKAGE.JSON
+            //o --hot faz o reload do browse automaticamente
+            //build faz toda a compilacao dos arquivos js em um arquivo único
+            "scripts": {
+                "start": "webpack serve --mode development --open --hot"
+                "build": "webpack --mode production"
+            }
+    -->
+</head>
+
+<body>
+    <!-- O REACT PRECISA DE UM ELEMENTO PRA MONTAR SOBRE ELE-->
+    <div id="root"></div>
+
+    <!-- LINKAR COM O JAVASCRIPT... MAIN.JS É O PADRÃO Q O WEBPACK CRIA -->
+    <script src="main.js"></script>
+</body>
+
+</html>

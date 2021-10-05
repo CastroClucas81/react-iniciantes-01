@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- LINK RESPONSÁVEL POR DAR TODA A FUNCIONALIDADE DO REACT-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+
+    <!-- CRIAÇÃO DE APLICATIVOS MOBILE -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- TRANSFORMA O NOSSO COD EM FUNÇÕES DE REACT -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <!--
+        O QUE FOI ABORDADO? BASICAMENTE CONFIGURAR O BAGULHO TODO NA MÃO
+        WEBPACK: AGRUPA O CÓDIGO DE CORPA OTIMIZADA. PERMITE DEFINIR COMPONENTES EM DIFERENTES ARQUIVOS. FACILITA O NPM
+        BABEL: TRANSFORMA COD JS NOVO EM VELHO PARA SUPORTAR SITES ANTIGOS... ele não é específico do REACT, E SIM DO JS
+
+        WEBPACK MÍNIMO
+            npm init -y
+            npm install webpack webpack-cli webpack-dev-server --save-dev
+
+        UM PEQUENO SCRIPT É OBRIGATÓRIO EM PACKAGE.JSON
+            //o --hot faz o reload do browse automaticamente
+            //build faz toda a compilacao dos arquivos js em um arquivo único
+            "scripts": {
+                "start": "webpack serve --mode development --open --hot"
+                "build": "webpack --mode production"
+            }
+
+        INSTALANDO O REACT EM INDEX.JS
+            NPM INSTALL REACT REACT-DOM
+
+            import ReactDOM from 'react-dom';
+            import App from "./app";
+
+            ReactDOM.render(App(), document.getElementById('root'));
+
+        INSTALANDO O BABEL
+            npm install @babel/core @babel/preset-react babel-loader --save-dev
+            @babel/core @babel/ - o principal
+            preset-react - pré configuração do babel para o react
+            babel-loader - instala vários tipos de loaders pra cada tipo de processamento, pq o babel mesmo vem vazio... ex
+            um loader próprio para css
+
+        É NECESSÁRIO CRIAR UM ARQUIVO CHAMADO WEBPACK.CONFIG.JS PARA CONFIGURAR O WEBPACK
+        o npm do WEBPACK só dá configurações iniciais
+
+        module.exports = {
+    // Nos módulos
+    module: {
+      // Aplique as seguintes regras
+      rules: [
+        {
+          // Nos arquivos que terminam ($) com .js
+          test: /\.js$/,
+          // Não procure nada em node_modules
+          exclude: /node_modules/,
+          // Use o seguinte:
+          use: {
+            // Babel
+            loader: 'babel-loader',
+            // Com as opções padrões para o React
+            options: {
+              presets: ['@babel/preset-react'],
+            },
+          },
+        },
+      ],
+    },
+  };
+
+  PARA INSTALADAR O WEBPACK DE CSS
+
+  npm install style-loader css-loader --save-dev
+
+  DENTRO DO WEBPACK.CONFIG.JS
+    {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+
+  AGORA EU POSSO CRIAR UM ARQUIVO CSS
+    -->
+</head>
+
+<body>
+    <!-- O REACT PRECISA DE UM ELEMENTO PRA MONTAR SOBRE ELE-->
+    <div id="root"></div>
+
+    <!-- LINKAR COM O JAVASCRIPT... MAIN.JS É O PADRÃO Q O WEBPACK CRIA -->
+    <script src="main.js"></script>
+</body>
+
+</html>
